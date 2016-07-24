@@ -25,10 +25,10 @@ func GetMe(ctx *gin.Context) {
 	return
 }
 
-func Sing_up(ctx *gin.Context)  {
+func SingUp(ctx *gin.Context) {
 
 }
 
-func Login(ctx *gin.Context)  {
+func SignIn(ctx *gin.Context) {
 
 }
