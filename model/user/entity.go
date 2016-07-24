@@ -2,6 +2,7 @@ package user
 
 import (
 	"time"
+
 	libtime "github.com/gotokatsuya/lboard/library/time"
 )
 
@@ -25,9 +26,9 @@ type Entity struct {
 }
 
 // New ...
-func New(name string) *Entity {
+func New(tagName string) *Entity {
 	return &Entity{
-		Name:         name,
+		TagName:      tagName,
 		ActiveStatus: Active,
 		CreatedAt:    libtime.Now(),
 		UpdatedAt:    libtime.Now(),
@@ -36,7 +37,7 @@ func New(name string) *Entity {
 
 // TableName returns the table name
 func (e Entity) TableName() string {
-	return "usesr"
+	return "users"
 }
 
 // Validate ...
@@ -46,5 +47,5 @@ func (e *Entity) Validate() error {
 
 // Primary returns
 func (e *Entity) Primary() (interface{}, []interface{}) {
-	return "id = ?", []interface{}{e.ID}
+	return "user_id = ?", []interface{}{e.UserID}
 }

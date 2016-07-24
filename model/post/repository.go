@@ -29,6 +29,15 @@ func (r *Repository) GetByID(id int64) (*Entity, error) {
 	return ent, nil
 }
 
+// Find ...
+func (r *Repository) Find() ([]Entity, error) {
+	var ents []Entity
+	if err := r.RootRepository.DB.Find(&ents).Error; err != nil {
+		return nil, err
+	}
+	return ents, nil
+}
+
 // Create inserts the entity
 func (r *Repository) Create(ent *Entity) (*Entity, error) {
 	if err := r.RootRepository.Create(ent); err != nil {

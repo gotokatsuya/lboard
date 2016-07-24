@@ -1,12 +1,12 @@
 package post
 
 import (
-	usermodel "github.com/gotokatsuya/lboard/model/user"
+	postmodel "github.com/gotokatsuya/lboard/model/post"
 )
 
 // GetResponse ...
 type GetResponse struct {
-	Instance instance
+	Instances []instance
 }
 
 // NewGetResponse ...
@@ -15,11 +15,15 @@ func NewGetResponse() *GetResponse {
 }
 
 // Convert ...
-func (r *GetResponse) Convert(user *usermodel.Entity) error {
-	ins := instance{}
-	if err := ins.Convert(user); err != nil {
-		return err
+func (r *GetResponse) Convert(posts []postmodel.Entity) error {
+	instances := make([]instance, len(posts))
+	for i, post := range posts {
+		var ins instance
+		if err := ins.Convert(&post); err != nil {
+			return err
+		}
+		instances[i] = ins
 	}
-	r.Instance = ins
+	r.Instances = instances
 	return nil
 }

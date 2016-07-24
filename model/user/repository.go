@@ -22,26 +22,8 @@ func NewRepository(ctx *gin.Context) *Repository {
 // GetByID ...
 func (r *Repository) GetByID(id int64) (*Entity, error) {
 	ent := new(Entity)
-	ent.ID = id
+	ent.UserID = id
 	if err := r.RootRepository.GetByPrimary(ent); err != nil {
-		return nil, err
-	}
-	return ent, nil
-}
-
-// GetByEmail ...
-func (r *Repository) GetByEmail(email string) (*Entity, error) {
-	ent := new(Entity)
-	if err := r.DB.Where("email = ?", email).First(ent).Error; err != nil {
-		return nil, err
-	}
-	return ent, nil
-}
-
-// GetByToken ...
-func (r *Repository) GetByToken(token string) (*Entity, error) {
-	ent := new(Entity)
-	if err := r.DB.Where("token = ?", token).First(ent).Error; err != nil {
 		return nil, err
 	}
 	return ent, nil
@@ -66,7 +48,7 @@ func (r *Repository) Update(ent *Entity) (*Entity, error) {
 // FindByIDs ...
 func (r *Repository) FindByIDs(ids []int64) ([]Entity, error) {
 	var ents []Entity
-	if err := r.DB.Where("id IN (?)", ids).Find(&ents).Error; err != nil && err != gorm.ErrRecordNotFound {
+	if err := r.DB.Where("user_id IN (?)", ids).Find(&ents).Error; err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
 	return ents, nil

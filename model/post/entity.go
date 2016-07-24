@@ -2,6 +2,7 @@ package post
 
 import (
 	"time"
+
 	libtime "github.com/gotokatsuya/lboard/library/time"
 )
 
@@ -25,9 +26,9 @@ type Entity struct {
 }
 
 // New ...
-func New(name string) *Entity {
+func New(text string) *Entity {
 	return &Entity{
-		Text:         name,
+		Text:         text,
 		ActiveStatus: Active,
 		CreatedAt:    libtime.Now(),
 		UpdatedAt:    libtime.Now(),
@@ -46,5 +47,5 @@ func (e *Entity) Validate() error {
 
 // Primary returns
 func (e *Entity) Primary() (interface{}, []interface{}) {
-	return "post_id = ?", []interface{}{e.ID}
+	return "post_id = ?", []interface{}{e.PostID}
 }

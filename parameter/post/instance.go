@@ -3,17 +3,17 @@ package post
 import (
 	"encoding/json"
 
-	usermodel "github.com/gotokatsuya/lboard/model/user"
+	postmodel "github.com/gotokatsuya/lboard/model/post"
 )
 
 type instance struct {
-	ID   int64  `json:"id"`
-	Name string `json:"name"`
+	PostID int64  `json:"post_id"`
+	Text   string `json:"text"`
 }
 
 // Convert ...
-func (i *instance) Convert(user *usermodel.Entity) error {
-	b, err := json.Marshal(user)
+func (i *instance) Convert(post *postmodel.Entity) error {
+	b, err := json.Marshal(post)
 	if err != nil {
 		return err
 	}

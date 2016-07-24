@@ -9,7 +9,7 @@ import (
 	"github.com/gotokatsuya/lboard/service"
 )
 
-func Posts(ctx *gin.Context)  {
+func Posts(ctx *gin.Context) {
 	request, err := postparam.NewGetRequest(ctx)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
@@ -20,10 +20,10 @@ func Posts(ctx *gin.Context)  {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{"me": res.Instance})
+	ctx.JSON(http.StatusOK, gin.H{"posts": res.Instances})
 	return
 }
 
-func Post(ctx *gin.Context)  {
+func Post(ctx *gin.Context) {
 
 }
