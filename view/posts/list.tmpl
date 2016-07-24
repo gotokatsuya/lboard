@@ -1,0 +1,7 @@
+{{ define "posts/list.tmpl" }}
+<html>
+{{ range $value := .Posts }}
+   <li>{{ $value.PostID }} {{ $value.Text }}</li>
+{{ end }}
+</html>
+{{ end }}

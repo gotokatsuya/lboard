@@ -24,6 +24,15 @@ func Posts(ctx *gin.Context) {
 	return
 }
 
-func Post(ctx *gin.Context) {
-
+func RenderPosts(ctx *gin.Context) {
+	request, err := postparam.NewGetRequest(ctx)
+	if err != nil {
+		return
+	}
+	res, err := service.GetPosts(ctx, request)
+	if err != nil {
+		return
+	}
+	ctx.HTML(http.StatusOK, "posts/list.tmpl", gin.H{"Posts": res.Instances})
+	return
 }
