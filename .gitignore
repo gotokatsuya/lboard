@@ -30,3 +30,4 @@ _testmain.go
 !.gitkeep
 
 public/main.js
+misc/bin/lboard
