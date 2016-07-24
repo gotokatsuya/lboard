@@ -12,6 +12,13 @@ func Init() *gin.Engine {
 	apiGroup := router.Group("/1.0")
 	{
 		apiGroup.GET("/me", controller.GetMe)
+		apiGroup.GET("/me/sign_up", controller.Sing_up)
+		apiGroup.POST("/me/login", controller.Login)
+
+		apiGroup.GET("/posts", controller.Posts)
+		apiGroup.POST("/post", controller.Post)
+
+		apiGroup.GET("/user/:id", controller.User)
 	}
 	return router
 }

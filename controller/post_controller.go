@@ -5,18 +5,17 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	meparam "github.com/gotokatsuya/lboard/parameter/me"
+	postparam "github.com/gotokatsuya/lboard/parameter/post"
 	"github.com/gotokatsuya/lboard/service"
 )
 
-// 自分のデータ取得
-func GetMe(ctx *gin.Context) {
-	request, err := meparam.NewGetRequest(ctx)
+func Posts(ctx *gin.Context)  {
+	request, err := postparam.NewGetRequest(ctx)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 		return
 	}
-	res, err := service.GetMe(ctx, request)
+	res, err := service.GetPosts(ctx, request)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 		return
@@ -25,10 +24,6 @@ func GetMe(ctx *gin.Context) {
 	return
 }
 
-func Sing_up(ctx *gin.Context)  {
-
-}
-
-func Login(ctx *gin.Context)  {
+func Post(ctx *gin.Context)  {
 
 }

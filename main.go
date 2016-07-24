@@ -6,7 +6,7 @@ import (
 	"time"
 
 	log "github.com/Sirupsen/logrus"
-	"gopkg.in/tylerb/graceful.v1"
+	"gopkg.in/tylerb/graceful.v1" // facebookのやつもある
 
 	"github.com/gotokatsuya/lboard/config"
 	"github.com/gotokatsuya/lboard/library/database"
