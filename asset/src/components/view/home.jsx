@@ -2,7 +2,7 @@
 
 import React from "react";
 import { NavItem } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router";
 
 export default class Home extends React.Component {
 
@@ -22,17 +22,14 @@ export default class Home extends React.Component {
     }
 
     render() {
-        if (this.state.me === null) {
-            return (<div>Loading</div>)
-        }
         return (
             <div>
                 <div>
                     <div>board</div>
                     <div>
-                        <LinkContainer to="/post">
-                            <NavItem>All Posts</NavItem>
-                        </LinkContainer>
+                        <Link to="/post">
+                            Posts
+                        </Link>
                     </div>
                 </div>
                 {React.cloneElement(this.props.children, { onRefreshMe: this.handleRefreshMe.bind(this) }) }
