@@ -1,4 +1,4 @@
-package user
+package post
 
 import (
 	"time"
@@ -17,8 +17,8 @@ const (
 
 // Entity describes user table.
 type Entity struct {
-	UserID       int64     `json:"user_id"            gorm:"column:user_id;primary_key"`
-	TagName      string    `json:"tag_name"           gorm:"column:tag_name"         sql:"not null;type:varchar(190)"`
+	PostID       int64     `json:"post_id"            gorm:"column:post_id;primary_key"`
+	Text         string    `json:"text"               gorm:"column:text"             sql:"not null;type:varchar(200)"`
 	ActiveStatus int       `json:"active_status"      gorm:"column:active_status"    sql:"not null;type:tinyint(3)"`
 	CreatedAt    time.Time `json:"created_at"         gorm:"column:created_at"       sql:"not null;type:datetime"`
 	UpdatedAt    time.Time `json:"updated_at"         gorm:"column:updated_at"       sql:"not null;type:datetime"`
@@ -27,7 +27,7 @@ type Entity struct {
 // New ...
 func New(name string) *Entity {
 	return &Entity{
-		Name:         name,
+		Text:         name,
 		ActiveStatus: Active,
 		CreatedAt:    libtime.Now(),
 		UpdatedAt:    libtime.Now(),
@@ -36,7 +36,7 @@ func New(name string) *Entity {
 
 // TableName returns the table name
 func (e Entity) TableName() string {
-	return "usesr"
+	return "posts"
 }
 
 // Validate ...
@@ -46,5 +46,5 @@ func (e *Entity) Validate() error {
 
 // Primary returns
 func (e *Entity) Primary() (interface{}, []interface{}) {
-	return "id = ?", []interface{}{e.ID}
+	return "post_id = ?", []interface{}{e.ID}
 }
